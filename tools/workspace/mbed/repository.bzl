@@ -379,7 +379,6 @@ def mbed_repository(
         target = target,
         config = config or DEFAULT_CONFIG,
         patches = [
-            Label("//tools/workspace/mbed:mbed.patch"),
             Label("//tools/workspace/mbed:stm32g4.patch"),
         ],
         patch_args = ["-p1"],
