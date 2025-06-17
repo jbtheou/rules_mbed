@@ -79,7 +79,7 @@ def _get_target_defines(repository_ctx, target_path):
     if targets_results.return_code != 0:
         fail("error reading targets.json")
 
-    targets = parse_json(targets_results.stdout)
+    targets = json.decode(targets_results.stdout)
 
     to_query = [first_target]
 
@@ -317,7 +317,7 @@ def _impl(repository_ctx):
 
         # Does this directory contain the linker script?
 
-        linker_search_path = "{}/device/TOOLCHAIN_GCC_ARM/".format(remaining_target)
+        linker_search_path = "{}/TOOLCHAIN_GCC_ARM/".format(remaining_target)
         find_result = repository_ctx.execute(["find", linker_search_path, '-name', '*.ld'])
         if find_result.return_code == 0 and len(find_result.stdout) > 0:
             linker_script = find_result.stdout.strip()
